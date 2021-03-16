@@ -2,7 +2,7 @@ PODS:
   - InputBarAccessoryView (5.1.0):
     - InputBarAccessoryView/Core (= 5.1.0)
   - InputBarAccessoryView/Core (5.1.0)
-  - MessageKit (3.2.0):
+  - MessageKit (3.3.0):
     - InputBarAccessoryView (~> 5.1.0)
   - PINCache (3.0.1-beta.8):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.8)
@@ -41,7 +41,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   InputBarAccessoryView: 19953f486a23e846e9487099f92bbe3456e46ce5
-  MessageKit: ce553a92153b597540ea4688b654680542c4af6a
+  MessageKit: 1f07618183be6d92b648ba7a384aafa097362a00
   PINCache: 534fd41d358d828dfdf227a0d327f3673a65e20b
   PINOperation: 24b774353ca248fcf87d67b2d61eef42087c125a
   PINRemoteImage: e2b89e19fb6e77ffc099f9d9f3b3fe1745e3f9f9
@@ -49,4 +49,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: cf0af8a506e2b58d4d51b99e165b58c56c26d619
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1
