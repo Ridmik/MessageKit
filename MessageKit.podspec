@@ -16,6 +16,6 @@ Pod::Spec.new do |s|
    s.ios.deployment_target = '11.0'
    s.ios.resources = ['Sources/Assets.xcassets']
 
-   s.dependency 'InputBarAccessoryView', :git => 'https://github.com/Ridmik/InputBarAccessoryView', :branch => 'inputText-dark-v3.1.0'
+   s.dependency 'InputBarAccessoryView'
 
 end
