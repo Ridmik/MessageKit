@@ -52,7 +52,7 @@ internal extension MessagesViewController {
             if scrollsToLastItemOnKeyboardBeginsEditing {
                 messagesCollectionView.scrollToLastItem()
             } else {
-                messagesCollectionView.scrollToBottom(animated: true)
+//                 messagesCollectionView.scrollToBottom(animated: true)
             }
         }
     }
@@ -100,9 +100,9 @@ internal extension MessagesViewController {
             messagesCollectionView.setContentOffset(contentOffset, animated: false)
         }
 
-        UIView.performWithoutAnimation {
+//         UIView.performWithoutAnimation {
             messageCollectionViewBottomInset = newBottomInset
-        }
+//         }
     }
 
     // MARK: - Inset Computation
