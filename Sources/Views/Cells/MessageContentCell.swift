@@ -38,6 +38,16 @@ open class MessageContentCell: MessageCollectionViewCell {
         containerView.layer.masksToBounds = true
         return containerView
     }()
+    
+    
+    open var cellContainerView: CellContainerView = {
+        let containerView = CellContainerView()
+        containerView.clipsToBounds = true
+        containerView.layer.masksToBounds = true
+//        containerView.style = .bubble
+//        containerView.backgroundColor = .red
+        return containerView
+    }()
 
     /// The top label of the cell.
     open var cellTopLabel: InsetLabel = {
@@ -91,6 +101,7 @@ open class MessageContentCell: MessageCollectionViewCell {
     }
 
     open func setupSubviews() {
+        contentView.addSubview(cellContainerView)
         contentView.addSubview(accessoryView)
         contentView.addSubview(cellTopLabel)
         contentView.addSubview(messageTopLabel)
@@ -124,6 +135,7 @@ open class MessageContentCell: MessageCollectionViewCell {
         layoutAvatarView(with: attributes)
         layoutAccessoryView(with: attributes)
         layoutTimeLabelView(with: attributes)
+        layoutCellContainerView(with: attributes)
     }
 
     /// Used to configure the cell.
@@ -145,13 +157,15 @@ open class MessageContentCell: MessageCollectionViewCell {
         let messageColor = displayDelegate.backgroundColor(for: message, at: indexPath, in: messagesCollectionView)
         let messageStyle = displayDelegate.messageStyle(for: message, at: indexPath, in: messagesCollectionView)
 
+        let cellStyle = displayDelegate.cellStyle(for: message, at: indexPath, in: messagesCollectionView)
         displayDelegate.configureAvatarView(avatarView, for: message, at: indexPath, in: messagesCollectionView)
 
         displayDelegate.configureAccessoryView(accessoryView, for: message, at: indexPath, in: messagesCollectionView)
 
         messageContainerView.backgroundColor = messageColor
-        messageContainerView.style = messageStyle
-
+        messageContainerView.style = .none
+        cellContainerView.style = cellStyle // messageStyle
+        print("cell style: \(cellStyle)")
         let topCellLabelText = dataSource.cellTopLabelAttributedText(for: message, at: indexPath)
         let bottomCellLabelText = dataSource.cellBottomLabelAttributedText(for: message, at: indexPath)
         let topMessageLabelText = dataSource.messageTopLabelAttributedText(for: message, at: indexPath)
@@ -360,5 +374,77 @@ open class MessageContentCell: MessageCollectionViewCell {
         let origin = CGPoint(x: contentView.frame.size.width + paddingLeft, y: contentView.frame.size.height * 0.5)
         let size = CGSize(width: attributes.messageTimeLabelSize.width, height: attributes.messageTimeLabelSize.height)
         messageTimestampLabel.frame = CGRect(origin: origin, size: size)
+    }
+    
+    ///  Positions the message bubble's time label.
+    /// - attributes: The `MessagesCollectionViewLayoutAttributes` for the cell.
+    open func layoutCellContainerView(with attributes: MessagesCollectionViewLayoutAttributes) {
+        let origin = CGPoint(x: messageContainerView.frame.origin.x, y: messageTopLabel.frame.origin.y)
+        cellContainerView.frame = CGRect(origin: origin, size:
+                                            CGSize(width: messageContainerView.frame.size.width, height: messageTopLabel.frame.size.height + messageContainerView.frame.size.height + messageBottomLabel.frame.size.height)
+                                            )
+    }
+}
+
+open class CellContainerView: UIImageView {
+
+    // MARK: - Properties
+
+    private let imageMask = UIImageView()
+    
+    open var style: MessageStyle = .none {
+        didSet {
+            applyMessageStyle()
+        }
+    }
+
+    open override var frame: CGRect {
+        didSet {
+            sizeMaskToView()
+        }
+    }
+    
+    // MARK: - Methods
+
+    private func sizeMaskToView() {
+        switch style {
+        case .none, .custom, .customCell:
+            break
+        case .bubble, .bubbleTail, .bubbleOutline, .bubbleTailOutline:
+            imageMask.frame = bounds
+        }
+    }
+
+    private func applyMessageStyle() {
+        switch style {
+        case .bubble, .bubbleTail:
+            imageMask.image = style.image
+            sizeMaskToView()
+            mask = imageMask
+            image = nil
+        case .bubbleOutline(let color):
+            let bubbleStyle: MessageStyle = .bubble
+            imageMask.image = bubbleStyle.image
+            sizeMaskToView()
+            mask = imageMask
+            image = style.image?.withRenderingMode(.alwaysTemplate)
+            tintColor = color
+        case .bubbleTailOutline(let color, let tail, let corner):
+            let bubbleStyle: MessageStyle = .bubbleTail(tail, corner)
+            imageMask.image = bubbleStyle.image
+            sizeMaskToView()
+            mask = imageMask
+            image = style.image?.withRenderingMode(.alwaysTemplate)
+            tintColor = color
+        case .none, .custom:
+            mask = nil
+            image = nil
+            tintColor = nil
+        case .customCell(let configurationClosure):
+            mask = nil
+            image = nil
+            tintColor = nil
+            configurationClosure(self)
+        }
     }
 }

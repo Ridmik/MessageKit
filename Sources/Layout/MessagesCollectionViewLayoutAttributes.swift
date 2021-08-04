@@ -44,7 +44,7 @@ open class MessagesCollectionViewLayoutAttributes: UICollectionViewLayoutAttribu
     public var cellBottomLabelAlignment = LabelAlignment(textAlignment: .center, textInsets: .zero)
     public var cellBottomLabelSize: CGSize = .zero
     
-    public var messageTopLabelAlignment = LabelAlignment(textAlignment: .center, textInsets: .zero)
+    public var messageTopLabelAlignment = LabelAlignment(textAlignment: .center, textInsets: .init(top: 8, left: 16, bottom: 0, right: 16))
     public var messageTopLabelSize: CGSize = .zero
 
     public var messageBottomLabelAlignment = LabelAlignment(textAlignment: .center, textInsets: .zero)

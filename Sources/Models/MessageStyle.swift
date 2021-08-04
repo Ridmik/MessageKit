@@ -70,6 +70,7 @@ public enum MessageStyle {
     case bubbleTail(TailCorner, TailStyle)
     case bubbleTailOutline(UIColor, TailCorner, TailStyle)
     case custom((MessageContainerView) -> Void)
+    case customCell((CellContainerView) -> Void)
 
     // MARK: - Public
 
@@ -86,7 +87,7 @@ public enum MessageStyle {
         }
 
         switch self {
-        case .none, .custom:
+        case .none, .custom, .customCell:
             return nil
         case .bubble, .bubbleOutline:
             break
@@ -135,7 +136,7 @@ public enum MessageStyle {
             return "bubble_full" + tailStyle.imageNameSuffix
         case .bubbleTailOutline(_, _, let tailStyle):
             return "bubble_outlined" + tailStyle.imageNameSuffix
-        case .none, .custom:
+        case .none, .custom, .customCell:
             return nil
         }
     }

@@ -4,7 +4,7 @@ PODS:
   - InputBarAccessoryView/Core (5.1.0)
   - Kingfisher (6.1.0)
   - MessageKit (3.3.0):
-    - InputBarAccessoryView (~> 5.1.0)
+    - InputBarAccessoryView
   - SwiftLint (0.39.2)
 
 DEPENDENCIES:
@@ -25,7 +25,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   InputBarAccessoryView: 19953f486a23e846e9487099f92bbe3456e46ce5
   Kingfisher: f5d8d60a0ef3edd642fd781bae60918599901aff
-  MessageKit: 1f07618183be6d92b648ba7a384aafa097362a00
+  MessageKit: 9082cad9c0707e30c0f05c34d8548c8300e1f8d9
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
 PODFILE CHECKSUM: 7924d01e904e2b4c501df5bac5f67b09b03d7ff5

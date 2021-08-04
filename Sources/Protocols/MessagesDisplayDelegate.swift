@@ -41,6 +41,17 @@ public protocol MessagesDisplayDelegate: AnyObject {
     /// - Note:
     ///   The default value returned by this method is `MessageStyle.bubble`.
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle
+    
+    /// Specifies the `MessageStyle` to be used for a `CellContainerView`.
+    ///
+    /// - Parameters:
+    ///   - message: The `MessageType` that will be displayed by this cell.
+    ///   - indexPath: The `IndexPath` of the cell.
+    ///   - messagesCollectionView: The `MessagesCollectionView` in which this cell will be displayed.
+    ///
+    /// - Note:
+    ///   The default value returned by this method is `MessageStyle.bubble`.
+    func cellStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle
 
     /// Specifies the background color of the `MessageContainerView`.
     ///

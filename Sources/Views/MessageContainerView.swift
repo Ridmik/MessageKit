@@ -29,7 +29,10 @@ open class MessageContainerView: UIImageView {
     // MARK: - Properties
 
     private let imageMask = UIImageView()
-
+//    public let stackView = UIStackView()
+//    public let containerTopLabel = UILabel()
+//    public let containerSecondaryLabel = UILabel()
+    
     open var style: MessageStyle = .none {
         didSet {
             applyMessageStyle()
@@ -41,12 +44,20 @@ open class MessageContainerView: UIImageView {
             sizeMaskToView()
         }
     }
-
+    
+//    required public init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//        addSubview(stackView)
+//        stackView.fillSuperview()
+//        stackView.addSubview(containerTopLabel)
+//        stackView.addSubview(containerSecondaryLabel)
+//    }
+    
     // MARK: - Methods
 
     private func sizeMaskToView() {
         switch style {
-        case .none, .custom:
+        case .none, .custom, .customCell:
             break
         case .bubble, .bubbleTail, .bubbleOutline, .bubbleTailOutline:
             imageMask.frame = bounds
@@ -74,7 +85,7 @@ open class MessageContainerView: UIImageView {
             mask = imageMask
             image = style.image?.withRenderingMode(.alwaysTemplate)
             tintColor = color
-        case .none:
+        case .none, .customCell:
             mask = nil
             image = nil
             tintColor = nil

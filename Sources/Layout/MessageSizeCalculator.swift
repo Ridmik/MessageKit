@@ -33,16 +33,16 @@ open class MessageSizeCalculator: CellSizeCalculator {
         self.layout = layout
     }
 
-    public var incomingAvatarSize = CGSize(width: 30, height: 30)
-    public var outgoingAvatarSize = CGSize(width: 30, height: 30)
+    public var incomingAvatarSize = CGSize(width: 0, height: 0)
+    public var outgoingAvatarSize = CGSize(width: 0, height: 0)
 
     public var incomingAvatarPosition = AvatarPosition(vertical: .cellBottom)
     public var outgoingAvatarPosition = AvatarPosition(vertical: .cellBottom)
 
     public var avatarLeadingTrailingPadding: CGFloat = 0
 
-    public var incomingMessagePadding = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 30)
-    public var outgoingMessagePadding = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 4)
+    public var incomingMessagePadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 30)
+    public var outgoingMessagePadding = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 0)
 
     public var incomingCellTopLabelAlignment = LabelAlignment(textAlignment: .center, textInsets: .zero)
     public var outgoingCellTopLabelAlignment = LabelAlignment(textAlignment: .center, textInsets: .zero)
@@ -50,8 +50,8 @@ open class MessageSizeCalculator: CellSizeCalculator {
     public var incomingCellBottomLabelAlignment = LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(left: 42))
     public var outgoingCellBottomLabelAlignment = LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(right: 42))
 
-    public var incomingMessageTopLabelAlignment = LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(left: 42))
-    public var outgoingMessageTopLabelAlignment = LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(right: 42))
+    public var incomingMessageTopLabelAlignment = LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: 7, left: 18))
+    public var outgoingMessageTopLabelAlignment = LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(top: 7, right: 18))
 
     public var incomingMessageBottomLabelAlignment = LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(left: 42))
     public var outgoingMessageBottomLabelAlignment = LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(right: 42))

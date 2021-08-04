@@ -40,7 +40,7 @@
 		882B5E811CF7D53600B6E160 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882B5E781CF7D53600B6E160 /* AppDelegate.swift */; };
 		882B5E901CF7D56000B6E160 /* ChatExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882B5E8E1CF7D56000B6E160 /* ChatExampleUITests.swift */; };
 		882B5E951CF7D56E00B6E160 /* ChatExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882B5E931CF7D56E00B6E160 /* ChatExampleTests.swift */; };
-		9961327FB4F9B96CFD84A126 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		9961327FB4F9B96CFD84A126 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		D4036D91BB2480E403CDC2F1 /* Pods_ChatExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC6E3F5C11E39F57598DBE6 /* Pods_ChatExampleUITests.framework */; };
 		F182DD0E2148F655FC0DFF91 /* Pods_ChatExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FCE8536D329EC8856E2BA8 /* Pods_ChatExampleTests.framework */; };
 /* End PBXBuildFile section */
@@ -147,7 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9961327FB4F9B96CFD84A126 /* BuildFile in Frameworks */,
+				9961327FB4F9B96CFD84A126 /* (null) in Frameworks */,
 				D4036D91BB2480E403CDC2F1 /* Pods_ChatExampleUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +410,7 @@
 				TargetAttributes = {
 					882B5E321CF7D4B900B6E160 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = A2D242JD56;
 						LastSwiftMigration = 0800;
 					};
 					882B5E481CF7D4B900B6E160 = {
@@ -765,6 +766,7 @@
 			baseConfigurationReference = A17AACB177F81B8A5ACA7D64 /* Pods-ChatExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = A2D242JD56;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.messagekit.ChatExample;
@@ -778,6 +780,7 @@
 			baseConfigurationReference = ABBB75782A3594E6FECDF6CD /* Pods-ChatExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = A2D242JD56;
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.messagekit.ChatExample;
