@@ -31,7 +31,7 @@ open class MessagesCollectionViewLayoutAttributes: UICollectionViewLayoutAttribu
 
     public var avatarSize: CGSize = .zero
     public var avatarPosition = AvatarPosition(vertical: .cellBottom)
-    public var avatarLeadingTrailingPadding: CGFloat = 0
+    public var avatarLeadingTrailingPadding: CGFloat = 8
 
     public var messageContainerSize: CGSize = .zero
     public var messageContainerPadding: UIEdgeInsets = .zero
