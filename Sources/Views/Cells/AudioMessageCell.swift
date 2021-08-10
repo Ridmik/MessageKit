@@ -116,10 +116,10 @@ open class AudioMessageCell: MessageContentCell {
         let durationLabelRightConstraint = messageContainerView.constraints.filter { $0.identifier == "right" }.first
 
         if !dataSource.isFromCurrentSender(message: message) {
-            playButtonLeftConstraint?.constant = 12
+            playButtonLeftConstraint?.constant = 8
             durationLabelRightConstraint?.constant = -8
         } else {
-            playButtonLeftConstraint?.constant = 5
+            playButtonLeftConstraint?.constant = 8
             durationLabelRightConstraint?.constant = -15
         }
 
@@ -134,8 +134,9 @@ open class AudioMessageCell: MessageContentCell {
 
         displayDelegate.configureAudioCell(self, message: message)
 
-        if case let .audio(audioItem) = message.kind {
-            durationLabel.text = displayDelegate.audioProgressTextFormat(audioItem.duration, for: self, in: messagesCollectionView)
-        }
+// no need to call this for our use case
+//        if case let .audio(audioItem) = message.kind {
+//            durationLabel.text = displayDelegate.audioProgressTextFormat(audioItem.duration, for: self, in: messagesCollectionView)
+//        }
     }
 }

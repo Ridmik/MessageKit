@@ -163,9 +163,8 @@ open class MessageContentCell: MessageCollectionViewCell {
         displayDelegate.configureAccessoryView(accessoryView, for: message, at: indexPath, in: messagesCollectionView)
 
         messageContainerView.backgroundColor = messageColor
-        messageContainerView.style = .none
-        cellContainerView.style = cellStyle // messageStyle
-        print("cell style: \(cellStyle)")
+        messageContainerView.style = messageStyle
+        cellContainerView.style = cellStyle
         let topCellLabelText = dataSource.cellTopLabelAttributedText(for: message, at: indexPath)
         let bottomCellLabelText = dataSource.cellBottomLabelAttributedText(for: message, at: indexPath)
         let topMessageLabelText = dataSource.messageTopLabelAttributedText(for: message, at: indexPath)
