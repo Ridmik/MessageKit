@@ -314,9 +314,8 @@ open class MessageContentCell: MessageCollectionViewCell {
         messageTopLabel.textInsets = attributes.messageTopLabelAlignment.textInsets
 
         let y = messageContainerView.frame.minY - attributes.messageContainerPadding.top - attributes.messageTopLabelSize.height
-        let origin = CGPoint(x: 0, y: y)
-        
-        messageTopLabel.frame = CGRect(origin: origin, size: attributes.messageTopLabelSize)
+        let origin = CGPoint(x: messageContainerView.frame.origin.x, y: y)
+        messageTopLabel.frame = CGRect(origin: origin, size: CGSize(width: messageContainerView.frame.width, height: attributes.messageTopLabelSize.height))
     }
 
     /// Positions the message bubble's bottom label.
@@ -326,9 +325,8 @@ open class MessageContentCell: MessageCollectionViewCell {
         messageBottomLabel.textInsets = attributes.messageBottomLabelAlignment.textInsets
 
         let y = messageContainerView.frame.maxY + attributes.messageContainerPadding.bottom
-        let origin = CGPoint(x: 0, y: y)
-
-        messageBottomLabel.frame = CGRect(origin: origin, size: attributes.messageBottomLabelSize)
+        let origin = CGPoint(x: messageContainerView.frame.origin.x, y: y)
+        messageBottomLabel.frame = CGRect(origin: origin, size: CGSize(width: messageContainerView.frame.width, height: attributes.messageBottomLabelSize.height))
     }
 
     /// Positions the cell's accessory view.
