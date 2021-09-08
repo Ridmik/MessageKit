@@ -78,6 +78,8 @@ open class MessageContentCell: MessageCollectionViewCell {
         label.numberOfLines = 0
         return label
     }()
+    
+    open var messageCellBorderWidth: CGFloat = 1
 
     /// The time label of the messageBubble.
     open var messageTimestampLabel: InsetLabel = InsetLabel()
@@ -376,10 +378,11 @@ open class MessageContentCell: MessageCollectionViewCell {
     ///  Positions the message bubble's time label.
     /// - attributes: The `MessagesCollectionViewLayoutAttributes` for the cell.
     open func layoutCellContainerView(with attributes: MessagesCollectionViewLayoutAttributes) {
-        let origin = CGPoint(x: messageContainerView.frame.origin.x, y: messageTopLabel.frame.origin.y)
+        let origin = CGPoint(x: messageContainerView.frame.origin.x - messageCellBorderWidth, y: messageTopLabel.frame.origin.y - messageCellBorderWidth)
         cellContainerView.frame = CGRect(origin: origin, size:
-                                            CGSize(width: messageContainerView.frame.size.width, height: messageTopLabel.frame.size.height + messageContainerView.frame.size.height + messageBottomLabel.frame.size.height)
+                                            CGSize(width: messageContainerView.frame.size.width + 2 * messageCellBorderWidth, height: messageTopLabel.frame.size.height + messageContainerView.frame.size.height + messageBottomLabel.frame.size.height)
                                             )
+
     }
 }
 
