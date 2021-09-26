@@ -56,6 +56,9 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIGestureRecogni
     /// The default value of this property is `false`.
     open var maintainPositionOnKeyboardFrameChanged: Bool = false
 
+    // After data load, keyboard height measure only then enable
+    open var scrollToBottomEnabled: Bool = false
+
     /// Display the date of message by swiping left.
     /// The default value of this property is `false`.
     open var showMessageTimestampOnSwipeLeft: Bool = false {

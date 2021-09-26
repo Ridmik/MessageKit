@@ -74,6 +74,8 @@ internal extension MessagesViewController {
             return
         }
 
+        guard scrollToBottomEnabled else { return }
+
         // Note that the check above does not exclude all notifications from an undocked keyboard, only the weird ones.
         //
         // We've tried following Apple's recommended approach of tracking UIKeyboardWillShow / UIKeyboardDidHide and ignoring frame
@@ -97,7 +99,7 @@ internal extension MessagesViewController {
 
         if maintainPositionOnKeyboardFrameChanged && differenceOfBottomInset != 0 {
             let contentOffset = CGPoint(x: messagesCollectionView.contentOffset.x, y: messagesCollectionView.contentOffset.y + differenceOfBottomInset)
-            messagesCollectionView.setContentOffset(contentOffset, animated: false)
+            messagesCollectionView.setContentOffset(contentOffset, animated: true)
         }
 
 //         UIView.performWithoutAnimation {
