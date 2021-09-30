@@ -74,7 +74,7 @@ internal extension MessagesViewController {
             return
         }
 
-        guard scrollToBottomEnabled else { return }
+        // guard scrollToBottomEnabled else { return }
 
         // Note that the check above does not exclude all notifications from an undocked keyboard, only the weird ones.
         //
