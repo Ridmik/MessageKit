@@ -92,6 +92,8 @@ open class MessageSizeCalculator: CellSizeCalculator {
         attributes.accessoryViewSize = accessoryViewSize(for: message)
         attributes.accessoryViewPadding = accessoryViewPadding(for: message)
         attributes.accessoryViewPosition = accessoryViewPosition(for: message)
+        
+        attributes.reactionViewSize = reactionViewSize(for: message, at: indexPath)
     }
 
     open override func sizeForItem(at indexPath: IndexPath) -> CGSize {
@@ -279,6 +281,13 @@ open class MessageSizeCalculator: CellSizeCalculator {
         let accessoryWidth = accessoryViewSize(for: message).width
         let accessoryPadding = accessoryViewPadding(for: message)
         return messagesLayout.itemWidth - avatarWidth - messagePadding.horizontal - accessoryWidth - accessoryPadding.horizontal - avatarLeadingTrailingPadding
+    }
+    
+    open func reactionViewSize(for message: MessageType, at indexPath: IndexPath) -> CGSize{
+        let layoutDelegate = messagesLayout.messagesLayoutDelegate
+        let collectionView = messagesLayout.messagesCollectionView
+        let width = layoutDelegate.reactionViewWidth(for: message, at: indexPath, in: collectionView)
+        return CGSize(width: width, height: 20)
     }
 
     // MARK: - Helpers

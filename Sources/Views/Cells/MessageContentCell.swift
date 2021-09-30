@@ -39,6 +39,22 @@ open class MessageContentCell: MessageCollectionViewCell {
         return containerView
     }()
     
+    public var _reactionView: UIView = {
+        let reactionView = UIView()
+        reactionView.backgroundColor = .lightGray
+        reactionView.clipsToBounds = true
+        reactionView.layer.masksToBounds = true
+        reactionView.layer.cornerRadius = 10
+        return reactionView
+    }()
+    
+    open var reactionLabel: InsetLabel = {
+        let label = InsetLabel()
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 12)
+        return label
+    }()
     
     open var cellContainerView: CellContainerView = {
         let containerView = CellContainerView()
@@ -112,6 +128,9 @@ open class MessageContentCell: MessageCollectionViewCell {
         contentView.addSubview(messageContainerView)
         contentView.addSubview(avatarView)
         contentView.addSubview(messageTimestampLabel)
+        contentView.addSubview(_reactionView)
+        _reactionView.addSubview(reactionLabel)
+        reactionLabel.centerInSuperview()
     }
 
     open override func prepareForReuse() {
@@ -138,6 +157,7 @@ open class MessageContentCell: MessageCollectionViewCell {
         layoutAccessoryView(with: attributes)
         layoutTimeLabelView(with: attributes)
         layoutCellContainerView(with: attributes)
+        layoutReactionView(with: attributes)
     }
 
     /// Used to configure the cell.
@@ -171,6 +191,7 @@ open class MessageContentCell: MessageCollectionViewCell {
         let bottomCellLabelText = dataSource.cellBottomLabelAttributedText(for: message, at: indexPath)
         let topMessageLabelText = dataSource.messageTopLabelAttributedText(for: message, at: indexPath)
         let bottomMessageLabelText = dataSource.messageBottomLabelAttributedText(for: message, at: indexPath)
+        let reactionLabelText = dataSource.messageReactionLabelText(for: message, at: indexPath)
         let messageTimestampLabelText = dataSource.messageTimestampLabelAttributedText(for: message, at: indexPath)
         cellTopLabel.attributedText = topCellLabelText
         cellBottomLabel.attributedText = bottomCellLabelText
@@ -178,6 +199,7 @@ open class MessageContentCell: MessageCollectionViewCell {
         messageBottomLabel.attributedText = bottomMessageLabelText
         messageTimestampLabel.attributedText = messageTimestampLabelText
         messageTimestampLabel.isHidden = !messagesCollectionView.showMessageTimestampOnSwipeLeft
+        reactionLabel.text = reactionLabelText
     }
 
     /// Handle tap gesture on contentView and its subviews.
@@ -384,6 +406,11 @@ open class MessageContentCell: MessageCollectionViewCell {
                                             )
 
     }
+}
+
+open func layoutReactionView(with attributes: MessagesCollectionViewLayoutAttributes) {
+    let width = attributes.reactionViewSize.width
+    _reactionView.frame = CGRect(origin: CGPoint(x: messageContainerView.frame.origin.x + messageContainerView.frame.width - width, y: cellBottomLabel.frame.origin.y - 10), size: attributes.reactionViewSize)
 }
 
 open class CellContainerView: UIImageView {
