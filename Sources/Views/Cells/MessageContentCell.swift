@@ -200,6 +200,7 @@ open class MessageContentCell: MessageCollectionViewCell {
         messageTimestampLabel.attributedText = messageTimestampLabelText
         messageTimestampLabel.isHidden = !messagesCollectionView.showMessageTimestampOnSwipeLeft
         reactionLabel.text = reactionLabelText
+        _reactionView.backgroundColor =  displayDelegate.reactionBackgroundColor(for: message, at: indexPath, in: messagesCollectionView)
     }
 
     /// Handle tap gesture on contentView and its subviews.
@@ -207,6 +208,8 @@ open class MessageContentCell: MessageCollectionViewCell {
         let touchLocation = gesture.location(in: self)
 
         switch true {
+        case _reactionView.frame.contains(touchLocation):
+            delegate?.didTapReaction(in: self)
         case messageContainerView.frame.contains(touchLocation) && !cellContentView(canHandle: convert(touchLocation, to: messageContainerView)):
             delegate?.didTapMessage(in: self)
         case avatarView.frame.contains(touchLocation):
