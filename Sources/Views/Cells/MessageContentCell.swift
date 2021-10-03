@@ -129,8 +129,9 @@ open class MessageContentCell: MessageCollectionViewCell {
         contentView.addSubview(avatarView)
         contentView.addSubview(messageTimestampLabel)
         contentView.addSubview(_reactionView)
-        _reactionView.addSubview(reactionLabel)
-        reactionLabel.centerInSuperview()
+//        _reactionView.addSubview(reactionLabel)
+//        reactionLabel.centerInSuperview()
+        contentView.addSubview(reactionLabel)
     }
 
     open override func prepareForReuse() {
@@ -199,8 +200,31 @@ open class MessageContentCell: MessageCollectionViewCell {
         messageBottomLabel.attributedText = bottomMessageLabelText
         messageTimestampLabel.attributedText = messageTimestampLabelText
         messageTimestampLabel.isHidden = !messagesCollectionView.showMessageTimestampOnSwipeLeft
-        reactionLabel.text = reactionLabelText
+        reactionLabel.text = "" // reactionLabelText
         _reactionView.backgroundColor =  displayDelegate.reactionBackgroundColor(for: message, at: indexPath, in: messagesCollectionView)
+        reactionLabel.textColor = displayDelegate.textColor(for: message, at: indexPath, in: messagesCollectionView)
+        let animateReactionIfAny = displayDelegate.animateReactionIfAny(for: message, at: indexPath, in: messagesCollectionView)
+        
+        if animateReactionIfAny == nil {
+            reactionLabel.text = reactionLabelText
+        } else {
+            _reactionView.isHidden = true
+            let translation = CGAffineTransform(translationX: 0, y: -50)
+             let scaling = CGAffineTransform(scaleX: 3, y: 3)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.reactionLabel.text = animateReactionIfAny
+                self._reactionView.isHidden = false
+                UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseOut, animations: {
+                    self.reactionLabel.transform = scaling.concatenating(translation)
+                }, completion: { _ in
+                    UIView.animate(withDuration: 0.25, delay: 0.5, options: .curveEaseIn, animations: {
+                        self.reactionLabel.transform = .identity
+                    }, completion: { _ in
+                        self.reactionLabel.text = reactionLabelText
+                    })
+                })
+            }
+        }
     }
 
     /// Handle tap gesture on contentView and its subviews.
@@ -414,6 +438,7 @@ open class MessageContentCell: MessageCollectionViewCell {
 open func layoutReactionView(with attributes: MessagesCollectionViewLayoutAttributes) {
     let width = attributes.reactionViewSize.width
     _reactionView.frame = CGRect(origin: CGPoint(x: messageContainerView.frame.origin.x + messageContainerView.frame.width - width, y: cellBottomLabel.frame.origin.y - 10), size: attributes.reactionViewSize)
+    reactionLabel.frame = _reactionView.frame
 }
 
 open class CellContainerView: UIImageView {

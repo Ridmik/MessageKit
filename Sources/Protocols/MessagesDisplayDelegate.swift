@@ -71,6 +71,8 @@ public protocol MessagesDisplayDelegate: AnyObject {
 
     func reactionBackgroundColor(for message: MessageType, at  indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor
     
+    func animateReactionIfAny(for message: MessageType, at  indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> String?
+    
     /// The section header to use for a given `IndexPath`.
     ///
     /// - Parameters:
@@ -262,6 +264,10 @@ public extension MessagesDisplayDelegate {
             return .white
         }
         return dataSource.isFromCurrentSender(message: message) ? .outgoingMessageBackground : .incomingMessageBackground
+    }
+    
+    func animateReactionIfAny(for message: MessageType, at  indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> String? {
+        return nil
     }
     
     func messageHeaderView(for indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageReusableView {
