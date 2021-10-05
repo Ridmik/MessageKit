@@ -103,6 +103,8 @@ public protocol MessagesDataSource: AnyObject {
     /// The default value returned by this method is `nil`.
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString?
 
+    func messageReactionLabelText(for message: MessageType, at indexPath: IndexPath) -> String?
+    
     /// The attributed text to be used for cell's timestamp label.
     /// The timestamp label is shown when showMessageTimestampOnSwipeLeft is enabled by swiping left over the chat controller.
     ///
@@ -157,6 +159,10 @@ public extension MessagesDataSource {
     }
 
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        return nil
+    }
+    
+    func messageReactionLabelText(for message: MessageType, at indexPath: IndexPath) -> String? {
         return nil
     }
 

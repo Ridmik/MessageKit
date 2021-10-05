@@ -51,6 +51,7 @@ open class MessagesCollectionViewLayoutAttributes: UICollectionViewLayoutAttribu
     public var messageBottomLabelSize: CGSize = .zero
 
     public var messageTimeLabelSize: CGSize = .zero
+    public var reactionViewSize: CGSize = .zero
 
     public var accessoryViewSize: CGSize = .zero
     public var accessoryViewPadding: HorizontalEdgeInsets = .zero
@@ -85,6 +86,7 @@ open class MessagesCollectionViewLayoutAttributes: UICollectionViewLayoutAttribu
         copy.accessoryViewPadding = accessoryViewPadding
         copy.accessoryViewPosition = accessoryViewPosition
         copy.linkPreviewFonts = linkPreviewFonts
+        copy.reactionViewSize = reactionViewSize
         return copy
         // swiftlint:enable force_cast
     }
@@ -108,6 +110,7 @@ open class MessagesCollectionViewLayoutAttributes: UICollectionViewLayoutAttribu
                 && attributes.messageTopLabelSize == messageTopLabelSize
                 && attributes.messageBottomLabelAlignment == messageBottomLabelAlignment
                 && attributes.messageBottomLabelSize == messageBottomLabelSize
+                && attributes.reactionViewSize == reactionViewSize
                 && attributes.accessoryViewSize == accessoryViewSize
                 && attributes.accessoryViewPadding == accessoryViewPadding
                 && attributes.accessoryViewPosition == accessoryViewPosition
