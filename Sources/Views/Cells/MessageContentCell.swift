@@ -207,19 +207,22 @@ open class MessageContentCell: MessageCollectionViewCell {
         
         if animateReactionIfAny == nil {
             reactionLabel.text = reactionLabelText
+            reactionLabel.font = .systemFont(ofSize: 12)
         } else {
+            reactionLabel.font = .systemFont(ofSize: 36)
             _reactionView.isHidden = true
-            let translation = CGAffineTransform(translationX: 0, y: -50)
-             let scaling = CGAffineTransform(scaleX: 3, y: 3)
+            self.reactionLabel.transform = CGAffineTransform(scaleX: 0.4, y: 0.4)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.reactionLabel.text = animateReactionIfAny
                 self._reactionView.isHidden = false
                 UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseOut, animations: {
-                    self.reactionLabel.transform = scaling.concatenating(translation)
+                    self.reactionLabel.transform = CGAffineTransform(scaleX: 1, y: 1).concatenating(CGAffineTransform(translationX: 0, y: -50))
                 }, completion: { _ in
                     UIView.animate(withDuration: 0.25, delay: 0.5, options: .curveEaseIn, animations: {
-                        self.reactionLabel.transform = .identity
+                        self.reactionLabel.transform = .identity.concatenating(CGAffineTransform(scaleX: 0.4, y: 0.4))
                     }, completion: { _ in
+                        self.reactionLabel.font = .systemFont(ofSize: 12)
+                        self.reactionLabel.transform = .identity
                         self.reactionLabel.text = reactionLabelText
                     })
                 })
@@ -438,7 +441,7 @@ open class MessageContentCell: MessageCollectionViewCell {
 open func layoutReactionView(with attributes: MessagesCollectionViewLayoutAttributes) {
     let width = attributes.reactionViewSize.width
     _reactionView.frame = CGRect(origin: CGPoint(x: messageContainerView.frame.origin.x + messageContainerView.frame.width - width, y: cellBottomLabel.frame.origin.y - 10), size: attributes.reactionViewSize)
-    reactionLabel.frame = _reactionView.frame
+    reactionLabel.frame = CGRect(origin: CGPoint(x: _reactionView.frame.origin.x - 10, y: _reactionView.frame.origin.y), size: CGSize(width: attributes.reactionViewSize.width + 20, height: attributes.reactionViewSize.height))
 }
 
 open class CellContainerView: UIImageView {
