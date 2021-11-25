@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
    s.social_media_url = 'https://twitter.com/_SD10_'
    s.author = { "Steven Deutsch" => "stevensdeutsch@yahoo.com" }
 
-   s.source = { :git => 'https://github.com/MessageKit/MessageKit.git', :tag => s.version }
+   s.source = { :git => 'https://github.com/MessageKit/MessageKit.git', :commit => "8aefa84ba3581113c82e9f40623ba948913df8ef" }
    s.source_files = 'Sources/**/*.swift'
 
    s.swift_version = '5.0'
