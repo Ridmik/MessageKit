@@ -89,8 +89,8 @@ open class MessageContentCell: MessageCollectionViewCell {
     }()
 
     /// The bottom label of the messageBubble.
-    open var messageBottomLabel: InsetLabel = {
-        let label = InsetLabel()
+    open var messageBottomLabel: MessageLabel = {
+        let label = MessageLabel()
         label.numberOfLines = 0
         return label
     }()
