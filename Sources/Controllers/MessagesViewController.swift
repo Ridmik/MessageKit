@@ -235,10 +235,10 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIGestureRecogni
     private func setupConstraints() {
         messagesCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
-        // let top = messagesCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-        // let bottom = messagesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let top = messagesCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
-        let bottom = messagesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -84)
+        let top = messagesCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        let bottom = messagesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        // let top = messagesCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
+        // let bottom = messagesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -84)
         let leading = messagesCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor)
         let trailing = messagesCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         NSLayoutConstraint.activate([top, bottom, trailing, leading])
