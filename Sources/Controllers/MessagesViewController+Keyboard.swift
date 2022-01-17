@@ -99,6 +99,11 @@ internal extension MessagesViewController {
 
         if maintainPositionOnKeyboardFrameChanged && differenceOfBottomInset != 0 {
             let contentOffset = CGPoint(x: messagesCollectionView.contentOffset.x, y: messagesCollectionView.contentOffset.y + differenceOfBottomInset)
+            
+            guard contentOffset.y <= messagesCollectionView.contentSize.height else {
+                 return
+            }
+
             messagesCollectionView.setContentOffset(contentOffset, animated: true)
         }
 
