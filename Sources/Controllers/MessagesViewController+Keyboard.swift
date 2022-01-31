@@ -97,19 +97,25 @@ internal extension MessagesViewController {
         let newBottomInset = requiredScrollViewBottomInset(forKeyboardFrame: keyboardEndFrame)
         let differenceOfBottomInset = newBottomInset - messageCollectionViewBottomInset
 
+        UIView.performWithoutAnimation {
+            messageCollectionViewBottomInset = newBottomInset
+        }
+        
         if maintainPositionOnKeyboardFrameChanged && differenceOfBottomInset != 0 {
             let contentOffset = CGPoint(x: messagesCollectionView.contentOffset.x, y: messagesCollectionView.contentOffset.y + differenceOfBottomInset)
             
             guard contentOffset.y <= messagesCollectionView.contentSize.height else {
                  return
             }
-
+            let freeSpace = messagesCollectionView.frame.height - self.topbarHeight - messagesCollectionView.contentSize.height
+            guard freeSpace <= contentOffset.y else {
+                return
+            }
+            if freeSpace > 0 {
+                contentOffset.y = contentOffset.y - freeSpace
+            }
             messagesCollectionView.setContentOffset(contentOffset, animated: true)
         }
-
-//         UIView.performWithoutAnimation {
-            messageCollectionViewBottomInset = newBottomInset
-//         }
     }
 
     // MARK: - Inset Computation
@@ -139,5 +145,12 @@ internal extension MessagesViewController {
     /// - Returns: The distance automatically added to contentInset.bottom, if any.
     private var automaticallyAddedBottomInset: CGFloat {
         return messagesCollectionView.adjustedContentInset.bottom - messagesCollectionView.contentInset.bottom
+    }
+}
+
+extension UIViewController {
+    var topbarHeight: CGFloat {
+        return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
+            (self.navigationController?.navigationBar.frame.height ?? 0.0)
     }
 }
