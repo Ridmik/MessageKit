@@ -95,7 +95,7 @@ internal extension MessagesViewController {
         let keyboardEndFrame = view.convert(keyboardEndFrameInScreenCoords, from: view.window)
 
         let newBottomInset = requiredScrollViewBottomInset(forKeyboardFrame: keyboardEndFrame)
-        let differenceOfBottomInset = newBottomInset - messageCollectionViewBottomInset
+        let differenceOfBottomInset = max(0, newBottomInset - messageCollectionViewBottomInset)
 
         UIView.performWithoutAnimation {
             messageCollectionViewBottomInset = newBottomInset
