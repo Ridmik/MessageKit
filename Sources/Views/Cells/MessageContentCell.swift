@@ -439,7 +439,7 @@ open class MessageContentCell: MessageCollectionViewCell {
     
     open func layoutReactionView(with attributes: MessagesCollectionViewLayoutAttributes) {
     let width = attributes.reactionViewSize.width
-    _reactionView.frame = CGRect(origin: CGPoint(x: messageContainerView.frame.origin.x + messageContainerView.frame.width - width, y: cellBottomLabel.frame.origin.y - 10), size: attributes.reactionViewSize)
+    _reactionView.frame = CGRect(origin: CGPoint(x: messageContainerView.frame.origin.x + messageContainerView.frame.width - width, y: cellBottomLabel.frame.origin.y - 8), size: attributes.reactionViewSize)
     reactionLabel.frame = CGRect(origin: CGPoint(x: _reactionView.frame.origin.x - 10, y: _reactionView.frame.origin.y), size: CGSize(width: attributes.reactionViewSize.width + 20, height: attributes.reactionViewSize.height))
     }
 }
