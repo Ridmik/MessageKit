@@ -374,7 +374,11 @@ open class MessageLabel: UILabel {
     private func parseForMatches(with detector: DetectorType, in text: NSAttributedString, for range: NSRange) -> [NSTextCheckingResult] {
         switch detector {
         case .custom(let regex):
-            return regex.matches(in: text.string, options: [], range: range)
+            return regex.matches(
+                in: text.string.replacingOccurrences(of: "\u{00A0}", with: " "),
+                options: [],
+                range: range
+            )
         default:
             fatalError("You must pass a .custom DetectorType")
         }
